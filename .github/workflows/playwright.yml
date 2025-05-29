@@ -34,7 +34,7 @@ jobs:
 
       # Upload the assets folder as an artifact
     - name: Upload Assets Folder as Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: pytest-html-assets
         path: assets  # Path to the assets folder
