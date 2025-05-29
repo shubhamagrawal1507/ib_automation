@@ -23,7 +23,7 @@ jobs:
     - name: Ensure browsers are installed
       run: python -m playwright install --with-deps
     - name: Run your tests
-      run: pytest --disable-warnings -q --html=report.html
+      run: pytest -s -v --disable-warnings --html=report.html
 
       # Upload the HTML report as an artifact
     - name: Upload HTML Report as Artifact
@@ -32,11 +32,9 @@ jobs:
         name: pytest-html-report  # Name of the artifact
         path: report.html         # Path to the generated HTML report
 
-
-
-        
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
+      # Upload the assets folder as an artifact
+    - name: Upload Assets Folder as Artifact
+      uses: actions/upload-artifact@v2
       with:
-        name: playwright-traces
-        path: test-results/
+        name: pytest-html-assets
+        path: assets  # Path to the assets folder
